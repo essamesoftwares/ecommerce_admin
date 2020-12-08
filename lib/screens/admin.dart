@@ -1,3 +1,8 @@
+import 'package:ecommerce_admin/pages/brands.dart';
+import 'package:ecommerce_admin/pages/categories.dart';
+import 'package:ecommerce_admin/pages/orders.dart';
+import 'package:ecommerce_admin/pages/products.dart';
+import 'package:ecommerce_admin/pages/users.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_admin/screens/add_product.dart';
 import '../db/category.dart';
@@ -91,7 +96,10 @@ class _AdminState extends State<Admin> {
                     child: Card(
                       child: ListTile(
                           title: FlatButton.icon(
-                              onPressed: null,
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) => Users()));
+                              },
                               icon: Icon(Icons.people_outline),
                               label: Flexible(child: Text("Users"))),
                           subtitle: Text(
@@ -106,7 +114,12 @@ class _AdminState extends State<Admin> {
                     child: Card(
                       child: ListTile(
                           title: FlatButton.icon(
-                              onPressed: null,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Categories()));
+                              },
                               icon: Icon(Icons.category),
                               label: Flexible(child: Text("Categories"))),
                           subtitle: Text(
@@ -121,7 +134,12 @@ class _AdminState extends State<Admin> {
                     child: Card(
                       child: ListTile(
                           title: FlatButton.icon(
-                              onPressed: null,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Products()));
+                              },
                               icon: Icon(Icons.track_changes),
                               label: Flexible(child: Text("Products"))),
                           subtitle: Text(
@@ -136,41 +154,16 @@ class _AdminState extends State<Admin> {
                     child: Card(
                       child: ListTile(
                           title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.tag_faces),
-                              label: Flexible(child: Text("Sold"))),
-                          subtitle: Text(
-                            '13',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(22.0),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => Orders()));
+                              },
                               icon: Icon(Icons.shopping_cart),
                               label: Flexible(child: Text("Orders"))),
                           subtitle: Text(
                             '5',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(22.0),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.close),
-                              label: Flexible(child: Text("Return"))),
-                          subtitle: Text(
-                            '0',
                             textAlign: TextAlign.center,
                             style: TextStyle(color: active, fontSize: 60.0),
                           )),
@@ -197,7 +190,10 @@ class _AdminState extends State<Admin> {
             ListTile(
               leading: Icon(Icons.change_history),
               title: Text("Products list"),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Products()));
+              },
             ),
             Divider(),
             ListTile(
@@ -211,7 +207,10 @@ class _AdminState extends State<Admin> {
             ListTile(
               leading: Icon(Icons.category),
               title: Text("Category list"),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Categories()));
+              },
             ),
             Divider(),
             ListTile(
@@ -226,7 +225,8 @@ class _AdminState extends State<Admin> {
               leading: Icon(Icons.library_books),
               title: Text("brand list"),
               onTap: () {
-                _brandService.getBrands();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Brands()));
               },
             ),
             Divider(),
