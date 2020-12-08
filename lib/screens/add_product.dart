@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ecommerce_admin/db/product.dart';
-import 'package:provider/provider.dart';
-import 'package:ecommerce_admin/providers/products_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:ecommerce_admin/providers/products_provider.dart';
 import '../db/category.dart';
 import '../db/brand.dart';
 
@@ -21,7 +21,7 @@ class _AddProductState extends State<AddProduct> {
   ProductService productService = ProductService();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController productNameController = TextEditingController();
-  TextEditingController quatityController = TextEditingController();
+  TextEditingController quantityController = TextEditingController();
   final priceController = TextEditingController();
   List<DocumentSnapshot> brands = <DocumentSnapshot>[];
   List<DocumentSnapshot> categories = <DocumentSnapshot>[];
@@ -34,10 +34,10 @@ class _AddProductState extends State<AddProduct> {
   Color black = Colors.black;
   Color grey = Colors.grey;
   Color red = Colors.red;
-  List<String> selectedSizes = <String>[];
-  List<String> colors = <String>[];
-  bool onSale = false;
-  bool featured = false;
+  // List<String> selectedSizes = <String>[];
+  // List<String> colors = <String>[];
+  // bool onSale = false;
+  // bool featured = false;
 
   File _image1;
   bool isLoading = false;
@@ -62,7 +62,7 @@ class _AddProductState extends State<AddProduct> {
     return items;
   }
 
-  List<DropdownMenuItem<String>> getBrandosDropDown() {
+  List<DropdownMenuItem<String>> getBrandsDropDown() {
     List<DropdownMenuItem<String>> items = new List();
     for (int i = 0; i < brands.length; i++) {
       setState(() {
@@ -78,7 +78,7 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<ProductProvider>(context);
+    // final productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -132,278 +132,274 @@ class _AddProductState extends State<AddProduct> {
                       ),
                     ),
 
-                    Text('Available Colors'),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           if (productProvider.selectedColors
+                    //               .contains('red')) {
+                    //             productProvider.removeColor('red');
+                    //           } else {
+                    //             productProvider.addColors('red');
+                    //           }
+                    //           setState(() {
+                    //             colors = productProvider.selectedColors;
+                    //           });
+                    //         },
+                    //         child: Container(
+                    //           width: 24,
+                    //           height: 24,
+                    //           decoration: BoxDecoration(
+                    //               color: productProvider.selectedColors
+                    //                       .contains('red')
+                    //                   ? Colors.blue
+                    //                   : grey,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(2),
+                    //             child: CircleAvatar(
+                    //               backgroundColor: Colors.red,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           if (productProvider.selectedColors
+                    //               .contains('yellow')) {
+                    //             productProvider.removeColor('yellow');
+                    //           } else {
+                    //             productProvider.addColors('yellow');
+                    //           }
+                    //           setState(() {
+                    //             colors = productProvider.selectedColors;
+                    //           });
+                    //         },
+                    //         child: Container(
+                    //           width: 24,
+                    //           height: 24,
+                    //           decoration: BoxDecoration(
+                    //               color: productProvider.selectedColors
+                    //                       .contains('yellow')
+                    //                   ? red
+                    //                   : grey,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(2),
+                    //             child: CircleAvatar(
+                    //               backgroundColor: Colors.yellow,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           if (productProvider.selectedColors
+                    //               .contains('blue')) {
+                    //             productProvider.removeColor('blue');
+                    //           } else {
+                    //             productProvider.addColors('blue');
+                    //           }
+                    //           setState(() {
+                    //             colors = productProvider.selectedColors;
+                    //           });
+                    //         },
+                    //         child: Container(
+                    //           width: 24,
+                    //           height: 24,
+                    //           decoration: BoxDecoration(
+                    //               color: productProvider.selectedColors
+                    //                       .contains('blue')
+                    //                   ? red
+                    //                   : grey,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(2),
+                    //             child: CircleAvatar(
+                    //               backgroundColor: Colors.blue,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           if (productProvider.selectedColors
+                    //               .contains('green')) {
+                    //             productProvider.removeColor('green');
+                    //           } else {
+                    //             productProvider.addColors('green');
+                    //           }
+                    //           setState(() {
+                    //             colors = productProvider.selectedColors;
+                    //           });
+                    //         },
+                    //         child: Container(
+                    //           width: 24,
+                    //           height: 24,
+                    //           decoration: BoxDecoration(
+                    //               color: productProvider.selectedColors
+                    //                       .contains('green')
+                    //                   ? red
+                    //                   : grey,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(2),
+                    //             child: CircleAvatar(
+                    //               backgroundColor: Colors.green,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           if (productProvider.selectedColors
+                    //               .contains('white')) {
+                    //             productProvider.removeColor('white');
+                    //           } else {
+                    //             productProvider.addColors('white');
+                    //           }
+                    //           setState(() {
+                    //             colors = productProvider.selectedColors;
+                    //           });
+                    //         },
+                    //         child: Container(
+                    //           width: 24,
+                    //           height: 24,
+                    //           decoration: BoxDecoration(
+                    //               color: productProvider.selectedColors
+                    //                       .contains('white')
+                    //                   ? red
+                    //                   : grey,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(2),
+                    //             child: CircleAvatar(
+                    //               backgroundColor: white,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(8.0),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           if (productProvider.selectedColors
+                    //               .contains('black')) {
+                    //             productProvider.removeColor('black');
+                    //           } else {
+                    //             productProvider.addColors('black');
+                    //           }
+                    //           setState(() {
+                    //             colors = productProvider.selectedColors;
+                    //           });
+                    //         },
+                    //         child: Container(
+                    //           width: 24,
+                    //           height: 24,
+                    //           decoration: BoxDecoration(
+                    //               color: productProvider.selectedColors
+                    //                       .contains('black')
+                    //                   ? red
+                    //                   : grey,
+                    //               borderRadius: BorderRadius.circular(15)),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(2),
+                    //             child: CircleAvatar(
+                    //               backgroundColor: black,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (productProvider.selectedColors
-                                  .contains('red')) {
-                                productProvider.removeColor('red');
-                              } else {
-                                productProvider.addColors('red');
-                              }
-                              setState(() {
-                                colors = productProvider.selectedColors;
-                              });
-                            },
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                  color: productProvider.selectedColors
-                                          .contains('red')
-                                      ? Colors.blue
-                                      : grey,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.red,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (productProvider.selectedColors
-                                  .contains('yellow')) {
-                                productProvider.removeColor('yellow');
-                              } else {
-                                productProvider.addColors('yellow');
-                              }
-                              setState(() {
-                                colors = productProvider.selectedColors;
-                              });
-                            },
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                  color: productProvider.selectedColors
-                                          .contains('yellow')
-                                      ? red
-                                      : grey,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.yellow,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (productProvider.selectedColors
-                                  .contains('blue')) {
-                                productProvider.removeColor('blue');
-                              } else {
-                                productProvider.addColors('blue');
-                              }
-                              setState(() {
-                                colors = productProvider.selectedColors;
-                              });
-                            },
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                  color: productProvider.selectedColors
-                                          .contains('blue')
-                                      ? red
-                                      : grey,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.blue,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (productProvider.selectedColors
-                                  .contains('green')) {
-                                productProvider.removeColor('green');
-                              } else {
-                                productProvider.addColors('green');
-                              }
-                              setState(() {
-                                colors = productProvider.selectedColors;
-                              });
-                            },
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                  color: productProvider.selectedColors
-                                          .contains('green')
-                                      ? red
-                                      : grey,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.green,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (productProvider.selectedColors
-                                  .contains('white')) {
-                                productProvider.removeColor('white');
-                              } else {
-                                productProvider.addColors('white');
-                              }
-                              setState(() {
-                                colors = productProvider.selectedColors;
-                              });
-                            },
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                  color: productProvider.selectedColors
-                                          .contains('white')
-                                      ? red
-                                      : grey,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: CircleAvatar(
-                                  backgroundColor: white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (productProvider.selectedColors
-                                  .contains('black')) {
-                                productProvider.removeColor('black');
-                              } else {
-                                productProvider.addColors('black');
-                              }
-                              setState(() {
-                                colors = productProvider.selectedColors;
-                              });
-                            },
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                  color: productProvider.selectedColors
-                                          .contains('black')
-                                      ? red
-                                      : grey,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: CircleAvatar(
-                                  backgroundColor: black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(0.1),
+                    //   child: Row(
+                    //     children: <Widget>[
+                    //       Checkbox(
+                    //           value: selectedSizes.contains('XS'),
+                    //           onChanged: (value) => changeSelectedSize('XS')),
+                    //       Text('XS'),
+                    //       Checkbox(
+                    //           value: selectedSizes.contains('S'),
+                    //           onChanged: (value) => changeSelectedSize('S')),
+                    //       Text('S'),
+                    //       Checkbox(
+                    //           value: selectedSizes.contains('M'),
+                    //           onChanged: (value) => changeSelectedSize('M')),
+                    //       Text('M'),
+                    //       Checkbox(
+                    //           value: selectedSizes.contains('L'),
+                    //           onChanged: (value) => changeSelectedSize('L')),
+                    //       Text('L'),
+                    //       Checkbox(
+                    //           value: selectedSizes.contains('XL'),
+                    //           onChanged: (value) => changeSelectedSize('XL')),
+                    //       Text('XL'),
+                    //       Expanded(
+                    //         child: Checkbox(
+                    //             value: selectedSizes.contains('XXL'),
+                    //             onChanged: (value) =>
+                    //                 changeSelectedSize('XXL')),
+                    //       ),
+                    //       Text('XXL'),
+                    //     ],
+                    //   ),
+                    // ),
 
-                    Text('Available Sizes'),
-
-                    Padding(
-                      padding: const EdgeInsets.all(0.1),
-                      child: Row(
-                        children: <Widget>[
-                          Checkbox(
-                              value: selectedSizes.contains('XS'),
-                              onChanged: (value) => changeSelectedSize('XS')),
-                          Text('XS'),
-                          Checkbox(
-                              value: selectedSizes.contains('S'),
-                              onChanged: (value) => changeSelectedSize('S')),
-                          Text('S'),
-                          Checkbox(
-                              value: selectedSizes.contains('M'),
-                              onChanged: (value) => changeSelectedSize('M')),
-                          Text('M'),
-                          Checkbox(
-                              value: selectedSizes.contains('L'),
-                              onChanged: (value) => changeSelectedSize('L')),
-                          Text('L'),
-                          Checkbox(
-                              value: selectedSizes.contains('XL'),
-                              onChanged: (value) => changeSelectedSize('XL')),
-                          Text('XL'),
-                          Expanded(
-                            child: Checkbox(
-                                value: selectedSizes.contains('XXL'),
-                                onChanged: (value) =>
-                                    changeSelectedSize('XXL')),
-                          ),
-                          Text('XXL'),
-                        ],
-                      ),
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Text('Sale'),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Switch(
-                                value: onSale,
-                                onChanged: (value) {
-                                  setState(() {
-                                    onSale = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text('Featured'),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Switch(
-                                value: featured,
-                                onChanged: (value) {
-                                  setState(() {
-                                    featured = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: <Widget>[
+                    //     Row(
+                    //       children: <Widget>[
+                    //         Text('Sale'),
+                    //         SizedBox(
+                    //           width: 10,
+                    //         ),
+                    //         Switch(
+                    //             value: onSale,
+                    //             onChanged: (value) {
+                    //               setState(() {
+                    //                 onSale = value;
+                    //               });
+                    //             }),
+                    //       ],
+                    //     ),
+                    //     Row(
+                    //       children: <Widget>[
+                    //         Text('Featured'),
+                    //         SizedBox(
+                    //           width: 10,
+                    //         ),
+                    //         Switch(
+                    //             value: featured,
+                    //             onChanged: (value) {
+                    //               setState(() {
+                    //                 featured = value;
+                    //               });
+                    //             }),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
 
                     Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -422,7 +418,7 @@ class _AddProductState extends State<AddProduct> {
                     ),
 
 //              select category
-                    Row(
+                    Column(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -455,7 +451,7 @@ class _AddProductState extends State<AddProduct> {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: TextFormField(
-                        controller: quatityController,
+                        controller: quantityController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           hintText: 'Quantity',
@@ -516,7 +512,7 @@ class _AddProductState extends State<AddProduct> {
     print(data.length);
     setState(() {
       brands = data;
-      brandsDropDown = getBrandosDropDown();
+      brandsDropDown = getBrandsDropDown();
       _currentBrand = brands[0].data['brand'];
     });
   }
@@ -526,20 +522,20 @@ class _AddProductState extends State<AddProduct> {
   }
 
   changeSelectedBrand(String selectedBrand) {
-    setState(() => _currentCategory = selectedBrand);
+    setState(() => _currentBrand = selectedBrand);
   }
 
-  void changeSelectedSize(String size) {
-    if (selectedSizes.contains(size)) {
-      setState(() {
-        selectedSizes.remove(size);
-      });
-    } else {
-      setState(() {
-        selectedSizes.insert(0, size);
-      });
-    }
-  }
+  // void changeSelectedSize(String size) {
+  //   if (selectedSizes.contains(size)) {
+  //     setState(() {
+  //       selectedSizes.remove(size);
+  //     });
+  //   } else {
+  //     setState(() {
+  //       selectedSizes.insert(0, size);
+  //     });
+  //   }
+  // }
 
   void _selectImage(Future<File> pickImage) async {
     File tempImg = await pickImage;
@@ -568,40 +564,36 @@ class _AddProductState extends State<AddProduct> {
     if (_formKey.currentState.validate()) {
       setState(() => isLoading = true);
       if (_image1 != null) {
-        if (selectedSizes.isNotEmpty) {
-          String imageUrl1;
+        String imageUrl1;
 
-          final FirebaseStorage storage = FirebaseStorage.instance;
-          final String picture1 =
-              "1${DateTime.now().millisecondsSinceEpoch.toString()}.jpg";
-          StorageUploadTask task1 =
-              storage.ref().child(picture1).putFile(_image1);
+        final FirebaseStorage storage = FirebaseStorage.instance;
+        final String picture1 =
+            "1${DateTime.now().millisecondsSinceEpoch.toString()}.jpg";
+        StorageUploadTask task1 =
+            storage.ref().child(picture1).putFile(_image1);
 
-          StorageTaskSnapshot snapshot1 =
-              await task1.onComplete.then((snapshot) => snapshot);
+        StorageTaskSnapshot snapshot1 =
+            await task1.onComplete.then((snapshot) => snapshot);
 
-          task1.onComplete.then((snapshot3) async {
-            imageUrl1 = await snapshot1.ref.getDownloadURL();
+        task1.onComplete.then((snapshot3) async {
+          imageUrl1 = await snapshot1.ref.getDownloadURL();
 
-            productService.uploadProduct({
-              "name": productNameController.text,
-              "price": double.parse(priceController.text),
-              "sizes": selectedSizes,
-              "colors": colors,
-              "picture": imageUrl1,
-              "quantity": int.parse(quatityController.text),
-              "brand": _currentBrand,
-              "category": _currentCategory,
-              'sale': onSale,
-              'featured': featured
-            });
-            _formKey.currentState.reset();
-            setState(() => isLoading = false);
-            Navigator.pop(context);
+          productService.uploadProduct({
+            "name": productNameController.text,
+            "price": double.parse(priceController.text),
+            // "sizes": selectedSizes,
+            // "colors": colors,
+            "picture": imageUrl1,
+            "quantity": int.parse(quantityController.text),
+            "brand": _currentBrand,
+            "category": _currentCategory,
+            // 'sale': onSale,
+            // 'featured': featured
           });
-        } else {
+          _formKey.currentState.reset();
           setState(() => isLoading = false);
-        }
+          Navigator.pop(context);
+        });
       } else {
         setState(() => isLoading = false);
 
